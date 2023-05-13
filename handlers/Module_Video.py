@@ -1,6 +1,7 @@
 from aiogram import Dispatcher
 from keyboards.video_kb import *
 from handlers.Machine import FSMAdmin
+from keyboards.Machine_kb import AllMenu
 
 
 # @dp.callback_query_handler(lambda x : x.data in [ i for i in V1_dict()], state=FSMAdmin.video)
@@ -19,7 +20,7 @@ async def cb_video1(callback: types.CallbackQuery):
            VY10R if callback.data == 'V1_10' else VY10B,
            VY11R if callback.data == 'V1_11' else VY11B,
            VY12R if callback.data == 'V1_12' else VY12B,
-           VBackMenu)
+           AllMenu)
     await FSMAdmin.video1.set()
     await callback.message.edit_text(f'[{V1_dict()[callback.data][0]}]({V1_dict()[callback.data][1]})',
                                      reply_markup=V1)
@@ -40,7 +41,7 @@ async def cb_video2(callback: types.CallbackQuery):
            VY10RR if callback.data == 'V2_10' else VY10BB,
            VY11RR if callback.data == 'V2_11' else VY11BB,
            VY12RR if callback.data == 'V2_12' else VY12BB,
-           VBackMenu)
+           AllMenu)
     await FSMAdmin.video2.set()
     await callback.message.edit_text(f'[{V2_dict()[callback.data][0]}]({V2_dict()[callback.data][1]})',
                                      reply_markup=V2)
@@ -61,7 +62,7 @@ async def cb_video3(callback: types.CallbackQuery):
            V1Y10R  if callback.data == 'V3_10' else V1Y10B ,
            V1Y11R  if callback.data == 'V3_11' else V1Y11B ,
            V1Y12R  if callback.data == 'V3_12' else V1Y12B ,
-           VBackMenu)
+           AllMenu)
     await FSMAdmin.video3.set()
     await callback.message.edit_text(f'[{V3_dict()[callback.data][0]}]({V3_dict()[callback.data][1]})',
                                      reply_markup=V2)
@@ -82,14 +83,14 @@ async def cb_video4(callback: types.CallbackQuery):
            V1Y10RR  if callback.data == 'V4_10' else V1Y10BB ,
            V1Y11RR  if callback.data == 'V4_11' else V1Y11BB ,
            V1Y12RR  if callback.data == 'V4_12' else V1Y12BB ,
-           VBackMenu)
+           AllMenu)
     await FSMAdmin.video4.set()
     await callback.message.edit_text(f'[{V4_dict()[callback.data][0]}]({V4_dict()[callback.data][1]})',
                                      reply_markup=V4)
 
 
 def register_handlers_video(dp : Dispatcher):
-    dp.register_message_handler(cb_video1, lambda x : x.data in [ i for i in V1_dict()], state=FSMAdmin.video)
-    dp.register_message_handler(cb_video2, lambda x : x.data in [ i for i in V2_dict()], state=FSMAdmin.video)
-    dp.register_message_handler(cb_video3, lambda x : x.data in [ i for i in V3_dict()], state=FSMAdmin.video)
-    dp.register_message_handler(cb_video4, lambda x : x.data in [ i for i in V4_dict()], state=FSMAdmin.video)
+    dp.register_callback_query_handler(cb_video1, lambda x : x.data in [ i for i in V1_dict()], state=(FSMAdmin.video, FSMAdmin.video1))
+    dp.register_callback_query_handler(cb_video2, lambda x : x.data in [ i for i in V2_dict()], state=(FSMAdmin.video, FSMAdmin.video2))
+    dp.register_callback_query_handler(cb_video3, lambda x : x.data in [ i for i in V3_dict()], state=(FSMAdmin.video, FSMAdmin.video3))
+    dp.register_callback_query_handler(cb_video4, lambda x : x.data in [ i for i in V4_dict()], state=(FSMAdmin.video, FSMAdmin.video4))

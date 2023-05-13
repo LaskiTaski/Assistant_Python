@@ -1,9 +1,5 @@
-from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from keyboards.Machine_kb import *
-from keyboards.video_kb import *
-from keyboards.homework_kb import *
-from keyboards.project_kb import *
 from keyboards.learning_kb import *
 from keyboards.materials_kb import *
 from bot_telegram import bot
@@ -41,6 +37,7 @@ async def cmd_start(message: types.Message):
                            text='Выберите раздел',
                            reply_markup=ikbmenu)
 
+
 # @dp.callback_query_handler(text='Menu')
 async def cb_menu1(callback: types.CallbackQuery):
     ikbmenu = types.InlineKeyboardMarkup(row_width=1)
@@ -62,6 +59,7 @@ async def cb_video(callback: types.CallbackQuery):
     Video = types.InlineKeyboardMarkup(row_width=1)
     Video.add(VModule1, VModule2, VModule3, VModule4, AllMenu)
     await FSMAdmin.video.set()
+    print('Состояние установленно')
     await callback.message.edit_text('Видеоматериалы по:', reply_markup=Video)
 
 

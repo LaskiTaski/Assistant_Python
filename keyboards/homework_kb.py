@@ -1,12 +1,6 @@
 from aiogram import types
 
-
-HModule1 = types.InlineKeyboardButton('Module1🤨', callback_data='HModule1')
-HModule2 = types.InlineKeyboardButton('Module2🫠 ', callback_data='HModule2')
-HModule3 = types.InlineKeyboardButton('Module3🤯', callback_data='HModule3')
 HBackMenu = types.InlineKeyboardButton(text='Вернуться в меню🔙', callback_data='Home_Work')
-AllMenu = types.InlineKeyboardButton('Вернуться в меню🔙', callback_data='Menu')
-
 
 
 HY1R = types.InlineKeyboardButton('1 Урок🔶', callback_data='HModule1')

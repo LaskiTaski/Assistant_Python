@@ -1,15 +1,6 @@
 from aiogram import types
 
 
-VModule1 = types.InlineKeyboardButton('Module1🤨', callback_data='VModule1')
-VModule2 = types.InlineKeyboardButton('Module2🫠 ', callback_data='VModule2')
-VModule3 = types.InlineKeyboardButton('Module3🤯', callback_data='VModule3')
-VModule4 = types.InlineKeyboardButton('Module4🫣', callback_data='VModule4')
-VBackMenu = types.InlineKeyboardButton(text='Вернуться в меню🔙', callback_data='Video')
-AllMenu = types.InlineKeyboardButton('Вернуться в меню🔙', callback_data='Menu')
-
-
-
 VY1R = types.InlineKeyboardButton('1 Урок🔶', callback_data='VModule1')
 VY2R = types.InlineKeyboardButton('2 Урок🔶', callback_data='V1_2')
 VY3R = types.InlineKeyboardButton('3 Урок🔶', callback_data='V1_3')
@@ -129,7 +120,7 @@ def V3_dict():
         'V3_5': ['5 Урок', 'https://telegra.ph/Urok-35-02-19'],
         'V3_6': ['6 Урок', 'https://telegra.ph/Urok-36-02-19'],
         'V3_7': ['7 Урок', 'https://telegra.ph/Urok-37-03-17'],
-        'V3_8': ['8 Урок', 'ttps://telegra.ph/Urok-38-03-17'],
+        'V3_8': ['8 Урок', 'https://telegra.ph/Urok-38-03-17'],
         'V3_9': ['9 Урок', 'https://telegra.ph/Urok-39-03-17'],
         'V3_10': ['10 Урок', 'https://telegra.ph/Urok-310-03-17'],
         'V3_11': ['11 Урок', 'https://telegra.ph/Urok-311-03-17'],

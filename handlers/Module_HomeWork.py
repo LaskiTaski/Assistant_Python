@@ -1,6 +1,8 @@
 from aiogram import Dispatcher
 from keyboards.homework_kb import *
 from handlers.Machine import FSMAdmin
+from keyboards.Machine_kb import AllMenu
+
 
 # @dp.callback_query_handler(lambda x : x.data in [ i for i in H1_dict()], state=FSMAdmin.home_work)
 async def cb_home_work1(callback: types.CallbackQuery):
@@ -17,7 +19,7 @@ async def cb_home_work1(callback: types.CallbackQuery):
            HY10R  if callback.data == 'H1_10' else HY10B ,
            HY11R  if callback.data == 'H1_11' else HY11B ,
            HY12R  if callback.data == 'H1_12' else HY12B ,
-           HBackMenu)
+           AllMenu)
     await FSMAdmin.home_work1.set()
     await callback.message.edit_text(f'[{H1_dict()[callback.data][0]}]({H1_dict()[callback.data][1]})',
                                      reply_markup=H1)
@@ -38,7 +40,7 @@ async def cb_home_work2(callback: types.CallbackQuery):
            HY10RR  if callback.data == 'H2_10' else HY10BB ,
            HY11RR  if callback.data == 'H2_11' else HY11BB ,
            HY12RR  if callback.data == 'H2_12' else HY12BB ,
-           HBackMenu)
+           AllMenu)
     await FSMAdmin.home_work2.set()
     await callback.message.edit_text(f'[{H2_dict()[callback.data][0]}]({H2_dict()[callback.data][1]})',
                                      reply_markup=H2)
@@ -59,12 +61,12 @@ async def cb_home_work3(callback: types.CallbackQuery):
            HY10RRR  if callback.data == 'H3_10' else HY10BBB ,
            HY11RRR  if callback.data == 'H3_11' else HY11BBB ,
            HY12RRR  if callback.data == 'H3_12' else HY12BBB ,
-           HBackMenu)
+           AllMenu)
     await FSMAdmin.home_work3.set()
     await callback.message.edit_text(f'[{H3_dict()[callback.data][0]}]({H3_dict()[callback.data][1]})',
                                      reply_markup=H3)
 
 def register_handlers_homework(dp : Dispatcher):
-    dp.register_message_handler(cb_home_work1, lambda x : x.data in [ i for i in H1_dict()], state=FSMAdmin.home_work)
-    dp.register_message_handler(cb_home_work2, lambda x : x.data in [ i for i in H2_dict()], state=FSMAdmin.home_work)
-    dp.register_message_handler(cb_home_work3, lambda x : x.data in [ i for i in H3_dict()], state=FSMAdmin.home_work)
+    dp.register_callback_query_handler(cb_home_work1, lambda x : x.data in [ i for i in H1_dict()], state=(FSMAdmin.home_work, FSMAdmin.home_work1))
+    dp.register_callback_query_handler(cb_home_work2, lambda x : x.data in [ i for i in H2_dict()], state=(FSMAdmin.home_work, FSMAdmin.home_work2))
+    dp.register_callback_query_handler(cb_home_work3, lambda x : x.data in [ i for i in H3_dict()], state=(FSMAdmin.home_work, FSMAdmin.home_work3))

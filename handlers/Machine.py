@@ -113,8 +113,8 @@ async def cb_materials(callback: types.CallbackQuery):
 def register_handlers_machine(dp : Dispatcher):
     dp.register_message_handler(cmd_start, state=None)
     dp.register_callback_query_handler(cb_menu1, text='Menu' , state='*')
-    dp.register_callback_query_handler(cb_video, text='Video', state=FSMAdmin.start)
-    dp.register_callback_query_handler(cb_home_work, text='Home_Work', state=FSMAdmin.start)
-    dp.register_callback_query_handler(cb_projects, text='Projects', state=FSMAdmin.start)
-    dp.register_callback_query_handler(cb_learning, lambda x: x.data in [i for i in learning_dict()], state=FSMAdmin.start)
-    dp.register_callback_query_handler(cb_materials, lambda x: x.data in [i for i in txt_dict()], state=FSMAdmin.start)
+    dp.register_callback_query_handler(cb_video, text='Video', state=(FSMAdmin.start, None))
+    dp.register_callback_query_handler(cb_home_work, text='Home_Work', state=(FSMAdmin.start, None))
+    dp.register_callback_query_handler(cb_projects, text='Projects', state=(FSMAdmin.start, None))
+    dp.register_callback_query_handler(cb_learning, lambda x: x.data in [i for i in learning_dict()], state=(FSMAdmin.start, None))
+    dp.register_callback_query_handler(cb_materials, lambda x: x.data in [i for i in txt_dict()], state=(FSMAdmin.start, None))
